@@ -29,9 +29,4 @@ class User {
       'profileImage': profileImage,
     };
   }
-
-  @override
-  String toString() {
-    return 'User(id: $id, email: $email, name: $name)';
-  }
 }
