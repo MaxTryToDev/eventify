@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'views/home_view.dart';
+import 'views/main_screen.dart';
 
 void main() {
   initializeDateFormatting('fr_FR', null).then((_) {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const HomeView(),
+      home: const MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
