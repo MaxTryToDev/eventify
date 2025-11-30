@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_view.dart';
 import 'favorites_view.dart';
+import 'search_view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    const Center(child: Text("Recherche (À venir)")),
+    const SearchView(),
     const FavoritesView(),
   ];
 

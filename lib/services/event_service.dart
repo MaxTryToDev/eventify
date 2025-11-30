@@ -6,11 +6,9 @@ import '../models/event.dart';
 class EventService {
   static const String baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
   static const String apiKey = 'TwCKnl5Y8ycdiUsGL8jmAJiDqfhBxMpm';
-  static const String countryCode = 'US';
-  //https://app.ticketmaster.com/discovery/v2/events.json?countryCode=FR&apikey=TwCKnl5Y8ycdiUsGL8jmAJiDqfhBxMpm
 
   /// Perform GET request
-  Future<List<Event>> getEvents() async {
+  Future<List<Event>> getEvents([String countryCode = 'US']) async {
     try {
       final response = await http.get(
         Uri.parse('$baseUrl?countryCode=$countryCode&apikey=$apiKey')

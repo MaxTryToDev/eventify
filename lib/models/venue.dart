@@ -5,6 +5,7 @@ class Venue {
   final String city;
   final String state;
   final String country;
+  final String countryCode;
   final String postalCode;
   final String timezone;
   final double? latitude;
@@ -17,6 +18,7 @@ class Venue {
     required this.city,
     required this.state,
     required this.country,
+    required this.countryCode,
     required this.postalCode,
     required this.timezone,
     this.latitude,
@@ -31,6 +33,7 @@ class Venue {
       city: json['city']?['name'] ?? '',
       state: json['state']?['name'] ?? '',
       country: json['country']?['name'] ?? '',
+      countryCode: json['country']?['countryCode'] ?? '',
       postalCode: json['postalCode'] ?? '',
       timezone: json['timezone'] ?? '',
       latitude: double.tryParse(json['location']?['latitude'] ?? ''),
@@ -46,6 +49,7 @@ class Venue {
       'city': city,
       'state': state,
       'country': country,
+      'countryCode': countryCode,
       'postalCode': postalCode,
       'timezone': timezone,
       'latitude': latitude,
