@@ -1,8 +1,8 @@
-import 'package:eventify/views/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import '../models/event.dart';
 import '../services/event_service.dart';
 import '../views/widgets/event_card.dart';
+import '../views/event_detail_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -21,7 +21,6 @@ class _HomeViewState extends State<HomeView> {
     _futureevents = _apiService.getEvents();
   }
 
-  // Méthode pour rafraîchir les données
   Future<void> _refreshevents() async {
     setState(() {
       _futureevents = _apiService.getEvents();
@@ -86,13 +85,22 @@ class _HomeViewState extends State<HomeView> {
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
                 final event = events[index];
-                return EventCard(event: event);
+                return EventCard(
+                    event: event,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EventDetailView(event: event),
+                        ),
+                      );
+                    },
+                );
               },
             ),
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
