@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import '../../models/event.dart';
+import '../../controllers/local_favorites_controller.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
@@ -104,6 +106,31 @@ class EventCard extends StatelessWidget {
                     ),
                   ),
                 ),
+
+              Positioned(
+                top: 16,
+                left: 16,
+                child: Obx(() {
+                  final favoritesController = Get.find<LocalFavoritesController>();
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: IconButton(
+                      onPressed: () => favoritesController.toggleFavorite(event),
+                      icon: Icon(
+                        favoritesController.isFavorite(event) 
+                            ? Icons.favorite 
+                            : Icons.favorite_border,
+                        color: favoritesController.isFavorite(event) 
+                            ? Colors.red 
+                            : Colors.grey[600],
+                      ),
+                    ),
+                  );
+                }),
+              ),
 
               Positioned(
                 bottom: 20,
