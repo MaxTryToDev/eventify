@@ -5,6 +5,7 @@ import '../models/event.dart';
 import '../models/country.dart';
 import '../services/event_service.dart';
 import 'event_detail_view.dart';
+import 'widgets/event_card.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -261,22 +262,14 @@ class _SearchViewState extends State<SearchView> {
   Widget _buildEventList() {
     return ListView.builder(
       itemCount: _filteredEvents.length,
+      padding: const EdgeInsets.only(top: 8),
       itemBuilder: (context, index) {
         final event = _filteredEvents[index];
-        return Card(
-          margin: const EdgeInsets.all(8),
-          child: ListTile(
-            leading: const Icon(Icons.event, size: 40),
-            title: Text(event.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('📍 ${event.venue.name}'),
-                Text('🏙️ ${event.venue.city}'),
-                Text('📅 ${event.eventDate}'),
-              ],
-            ),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailView(event: event))),
+        return EventCard(
+          event: event,
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => EventDetailView(event: event)),
           ),
         );
       },
